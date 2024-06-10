@@ -10,6 +10,7 @@
     <a href="cadastrar-usuario.php">Cadastro</a>
     <a href="login.php">Login</a>
     <a href="logout-usuario.php">Logout</a>
-
+    <a href="cadastro-receitas.php">Cadastro de Receitas</a>
+   
 </body>
 </html>

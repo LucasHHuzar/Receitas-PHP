@@ -11,23 +11,23 @@
 
     <?php 
         
-        session_start();
-        
-        $usuario = $_SESSION["usuario"] ?? null;
+        require_once "header.php";
 
-        if(!is_null($usuario)){
+        if(!is_null($usu)){
 
             // estou logado
             header("Location: index.php");
+
+            echo session_id();
 
         }else{
 
             require_once "banco.php";
 
-            $usuario = $_POST['usuario'] ?? null;
+            $usu = $_POST['usu'] ?? null;
             $senha = $_POST['senha'] ?? null;
 
-            if(is_null($usuario) || is_null($senha)){
+            if(is_null($usu) || is_null($senha)){
 
                 require_once "form-login.php";
 
@@ -35,9 +35,9 @@
                 
                 require_once "form-login.php"; // para testes
 
-                echo "~ [Usuario: $usuario - Senha: $senha] ~ <br>";
+                echo "~ [usu: $usu - Senha: $senha] ~ <br>";
 
-                $busca = buscarusuario($usuario);
+                $busca = buscarUsuario($usu);
 
                 if($busca->num_rows == 0){
                     echo "<br> Usuário não existe";
@@ -45,7 +45,7 @@
                     echo "<br> boa";
                     
                     $obj = $busca->fetch_object();
-                    echo "<br>" . $obj->usuario;
+                    echo "<br>" . $obj->usu;
                     echo "<br>" . $obj->nome;
                     echo "<br>" . $obj->senha;
 
@@ -54,7 +54,7 @@
 
                         echo "<br> sucesso!";
 
-                        $_SESSION["usuario"] = $usuario;
+                        $_SESSION["usu"] = $usu;
 
                         //header("Location: index.php");
 
@@ -68,7 +68,7 @@
 
                 
             }
-            // ["usuario" => "zezinho", "senhaha" => "senhaha47"],
+            // ["usu" => "zezinho", "senhaha" => "senhaha47"],
             // echo "<br>".  password_hash("senhaha47", PASSWORD_DEFAULT);
       }
     ?>
