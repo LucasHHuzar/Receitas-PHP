@@ -1,3 +1,10 @@
+<?php 
+    
+    require_once "../functions/functions.php";
+    validarUsuario();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +14,7 @@
 </head>
 <body>
 
-    <?php 
-    
-        require_once "functions.php";
-        cadastroReceita();
-    ?>
+   
 
 
     <h1>OI</h1>

@@ -111,10 +111,5 @@
             echo var_dump($resp);
         }
     }
-
-    // criarUsuario("zezinho", "arthur", "senha47");
-    // criarUsuario("joaozinho", "joao", "AbC1");
-    // atualizarUsuario("joaozinho", "", "456", true);
-
 ?>
 </pre>
