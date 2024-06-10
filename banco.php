@@ -1,7 +1,7 @@
 <pre>
 <?php 
 
-    $banco = new mysqli("localhost", "root", "", "receitas_php");
+    $banco = new mysqli("localhost:3307", "root", "", "receitas_php");
 
    // FUNCOES EM COMUM 
 
@@ -111,9 +111,6 @@
             echo var_dump($resp);
         }
     }
-    
-
-
 
     // criarUsuario("zezinho", "arthur", "senha47");
     // criarUsuario("joaozinho", "joao", "AbC1");
