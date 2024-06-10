@@ -1,7 +1,7 @@
 <pre>
 <?php 
 
-    $banco = new mysqli("localhost:3307", "root", "", "receitas_php");
+    $banco = new mysqli("localhost:3306", "root", "", "receitas_php");
 
    // FUNCOES EM COMUM 
 
