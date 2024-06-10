@@ -10,13 +10,7 @@
     <?php 
     
         require_once "functions.php";
-
-        // require_once "banco.php";
-
         cadastroReceita();
-
-        // return $usuario;
-    
     ?>
 
 

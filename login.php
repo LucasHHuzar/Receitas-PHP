@@ -13,31 +13,28 @@
         
         require_once "header.php";
 
-        if(!is_null($usu)){
-
+        if(!is_null($usuario)){
+            
             // estou logado
             header("Location: index.php");
-
-            echo session_id();
-
+ 
         }else{
 
             require_once "banco.php";
 
-            $usu = $_POST['usu'] ?? null;
+            $usuario = $_POST['usuario'] ?? null;
             $senha = $_POST['senha'] ?? null;
 
-            if(is_null($usu) || is_null($senha)){
+            if(is_null($usuario) || is_null($senha)){
 
                 require_once "form-login.php";
 
             }else{
-                
                 require_once "form-login.php"; // para testes
 
-                echo "~ [usu: $usu - Senha: $senha] ~ <br>";
+                echo "~ [usu: $usuario - Senha: $senha] ~ <br>";
 
-                $busca = buscarUsuario($usu);
+                $busca = buscarUsuario($usuario);
 
                 if($busca->num_rows == 0){
                     echo "<br> Usuário não existe";
@@ -45,16 +42,15 @@
                     echo "<br> boa";
                     
                     $obj = $busca->fetch_object();
-                    echo "<br>" . $obj->usu;
+                    echo "<br>" . $obj->usuario;
                     echo "<br>" . $obj->nome;
                     echo "<br>" . $obj->senha;
 
                     // if($senha === $obj->senhaha){
                     if(password_verify($senha, $obj->senha)){
-
                         echo "<br> sucesso!";
 
-                        $_SESSION["usu"] = $usu;
+                        $_SESSION["usuario"] = $usuario;
 
                         //header("Location: index.php");
 
@@ -65,11 +61,8 @@
                     }
 
                 }
-
                 
             }
-            // ["usu" => "zezinho", "senhaha" => "senhaha47"],
-            // echo "<br>".  password_hash("senhaha47", PASSWORD_DEFAULT);
       }
     ?>
 
