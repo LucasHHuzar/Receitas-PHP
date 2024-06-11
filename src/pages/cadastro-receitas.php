@@ -15,9 +15,12 @@
 <body>
 
    
-
+    <?php 
+    require_once "../../src//forms//form-cadastroReceita.php";
+    ?>
 
     <h1>OI</h1>
+
     
 </body>
 </html>

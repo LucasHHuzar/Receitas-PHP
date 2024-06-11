@@ -1,11 +1,24 @@
 <?php
 //nao testei o codigo pois esta com erro na pagina principal, testei em outro site aparentemente deu certo
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+function uploadFile($file){
     // Diretório onde o arquivo será salvo
-    $target_dir = "uploads/img/+.";
-    // Caminho completo do arquivo
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+
+  // require_once "../../../src/img";
+  $current_dir = __DIR__;
+
+ // constroi o caminho da pasta
+  $target_dir = $current_dir . "/../img";
+
+  //checa se a pasta existe se na exisst cria uma nova pasta
+        if (!is_dir($target_dir)) {
+        if (!mkdir($target_dir, 0777, true)) {
+            die('Failed to create upload directory');
+        }
+    }
+
+
+    // caminho completo do arquivo adicionado "/" para especificar a pasta e o path correto
+    $target_file = $target_dir . "/" . basename($_FILES["file"]["name"]);
     $tipoImg = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     $uploadOk = 1;
@@ -33,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $uploadOk = 0;
     }
 
-    // Verifica se deu algum dos eros acima no upload
+    // Verifica se deu algum dos erros acima no upload
     if ($uploadOk == 0) {
         echo "Desculpe, seu arquivo não foi enviado.";
     } else {
@@ -44,4 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+
 ?>

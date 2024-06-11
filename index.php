@@ -6,12 +6,11 @@
     <title>Index</title>
 </head>
         <header>
-            <div>
-                <button class="login-button">teste</button>
-                <div class="login-container">
+                <div>
                     <?php require_once './src/navigation/nav-bar.php';?>
                     <?php login();?>
                     <?php cadastro(); ?>
+                    <?php cadastroDeReceitas(); ?>
                 </div>
             </div>
         </header>
