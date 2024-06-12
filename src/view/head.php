@@ -18,5 +18,8 @@
     echo "<a href=\"../../../../trabalho-php//Receitas-PHP//src//pages//cadastro-receitas.php\">Cadastrar Receita</a>";
   }
 
-
+  function cadastrarCtegoria(){
+    // invocando pagina para cadastrar receitas
+      echo "<a href=\"../../../../trabalho-php//Receitas-PHP//src//pages//cadastro-categoria.php\">Cadastrar Categoria</a>";
+    }
 ?>

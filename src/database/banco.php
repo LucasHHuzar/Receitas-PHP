@@ -2,6 +2,10 @@
 <?php 
 
     $banco = new mysqli("localhost:3307", "root", "", "receitas_php");
+    //checa se a conexao com o banco 
+    if($banco->connect_error){
+        die("erro de conexao com banco: " . $banco->connect_error);
+    }
 
    // FUNCOES EM COMUM 
 
@@ -111,5 +115,56 @@
             echo var_dump($resp);
         }
     }
+
+
+    // funcao para cadastro de novas categorias
+    function cadastrarCategoria(String $categoria, bool $debug=false){
+        global $banco;
+
+        $q = "INSERT INTO categorias (categoria) VALUES (?)";
+
+        if ($stmt = $banco->prepare($q)) {
+           
+            $stmt->bind_param("s", $categoria);
+    
+            $resp = $stmt->execute();
+
+            //if ($debug) {
+               // echo "Query: $q\n";
+              //  echo "Category: $categoria\n";
+               // echo "Execution response: " . var_dump($resp) . "\n";
+           // }
+           
+            $stmt->close();
+        } else {
+            if ($debug) {
+                echo "Error preparing statement: " . $banco->error;
+            }
+        }
+    }
+
+    // funcao para fazer o featch (buscar) todas as categorias do banco
+    function featchCategoria(){
+        global $banco;
+
+        $q = "SELECT * FROM `categorias`";
+
+
+        $resultado = $banco->query($q);
+
+       if($resultado === false){
+            echo "Query error: " . $banco->error;
+            return false;
+       }
+
+
+       $categoria = $resultado ->fetch_all(MYSQLI_ASSOC);
+
+       $resultado->free();
+
+       return $categoria;
+
+    }
+
 ?>
 </pre>

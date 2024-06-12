@@ -1,8 +1,11 @@
+
 <?php 
-    
+
     require_once "../functions/functions.php";
     validarUsuario();
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -19,8 +22,5 @@
     require_once "../../src//forms//form-cadastroReceita.php";
     ?>
 
-    <h1>OI</h1>
-
-    
 </body>
 </html>
