@@ -37,7 +37,7 @@
         <?php
 
         //valida as informacoes e chama a funcao cadastro de receita
-        require_once "../functions/functions.php";
+        require_once "functions.php";
        
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
          

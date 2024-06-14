@@ -134,7 +134,7 @@
               //  echo "Category: $categoria\n";
                // echo "Execution response: " . var_dump($resp) . "\n";
            // }
-           
+
             $stmt->close();
         } else {
             if ($debug) {
@@ -164,6 +164,28 @@
 
        return $categoria;
 
+    }
+
+    function deletarCategoriaDb(String $categoria){
+        global $banco; // Assuming $banco is your database connection object
+    
+        // Escape the category name to prevent SQL injection
+        $categoria = $banco->real_escape_string($categoria);
+    
+        // Construct the SQL query to delete the category
+        $q = "DELETE FROM `categorias` WHERE `categoria` = '{$categoria}'";
+    
+        // Execute the query
+        $resultado = $banco->query($q);
+    
+        // Check if the query execution was successful
+        if($resultado === false){
+            echo "Query error: " . $banco->error;
+            return false;
+        }
+    
+        // Return true indicating success
+        return true;
     }
 
 ?>

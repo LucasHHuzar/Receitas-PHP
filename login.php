@@ -10,23 +10,23 @@
     <h1>Login</h1>
 
     <?php 
-        require_once "../validation/header.php";
+        require_once "head.php";
 
         if(!is_null($usuario)){
-            header("Location: ../../index.php");
+            header("Location: index.php");
         }else{
 
-            require_once "../database/banco.php";
+            require_once "banco.php";
 
             $usuario = $_POST['usuario'] ?? null;
             $senha = $_POST['senha'] ?? null;
 
             if(is_null($usuario) || is_null($senha)){
 
-                require_once "../forms/form-login.php";
+                require_once "form-login.php";
 
             }else{
-                require_once "../forms/form-login.php"; // para testes
+                require_once "form-login.php"; // para testes
 
                 $busca = buscarUsuario($usuario);
 
@@ -34,7 +34,7 @@
                     echo "<br> Usuário não existe";
                 }else{
                  
-                    header("Location: ../../index.php");
+                    header("Location: index.php");
 
                      $obj = $busca->fetch_object();
 

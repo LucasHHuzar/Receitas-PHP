@@ -1,8 +1,10 @@
 
 <?php 
 
-    require_once "../functions/functions.php";
+    require_once "functions.php";
     validarUsuario();
+
+    require_once "header.php";
 ?>
 
 
@@ -19,7 +21,7 @@
 
    
     <?php 
-    require_once "../../src//forms//form-cadastroReceita.php";
+    require_once "form-cadastroReceita.php";
     ?>
 
 </body>

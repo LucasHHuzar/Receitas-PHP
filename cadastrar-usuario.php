@@ -11,7 +11,7 @@
 
     <?php 
 
-        require_once "../database/banco.php";
+        require_once "banco.php";
 
         $usuario = $_POST['usuario'] ?? null;
         $nome = $_POST['nome'] ?? null;
@@ -19,7 +19,7 @@
 
         if(is_null($usuario) || is_null($senha)){
 
-            require_once "../forms/form-cadastro.php";
+            require_once "form-cadastro.php";
 
         }else{
 

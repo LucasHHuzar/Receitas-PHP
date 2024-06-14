@@ -1,6 +1,6 @@
 <?php
-require_once "../../src/database/banco.php";
-require_once "../../src/validation/uploads/upload.php";
+require_once "banco.php";
+require_once "upload.php";
     
 
     // funcao responsavel por criar a receita, no momento apenas faz upload do arquivo
@@ -17,7 +17,7 @@ require_once "../../src/validation/uploads/upload.php";
     }
 
    function validarUsuario(){
-       require_once "../validation/header.php";
+       require_once "header.php";
 
       if(!isset($_SESSION['usuario']) || is_null($_SESSION['usuario'])){
            header("Location: login.php");
@@ -31,5 +31,12 @@ require_once "../../src/validation/uploads/upload.php";
 
            $categoria =  featchCategoria();
              return $categoria;
+        }
+
+        function deletarCategoria($categoria){
+
+            $escolha = deletarCategoriaDb($categoria);
+            return $escolha;
+
         }
 ?>
