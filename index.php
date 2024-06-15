@@ -17,5 +17,9 @@
 
 </header>
     
+<section>
+  <img src="img\coxinha-de-frango-com-requeijao-mini-congelada.jpg" alt="image not founded">
+</section>
+
 </body>
 </html>

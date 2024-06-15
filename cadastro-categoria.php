@@ -2,12 +2,10 @@
 <?php 
 
    require_once "functions.php";
-
+ //  require_once "head.php";
    validarUsuario();
 
 ?>
-
-
 
 
 
@@ -21,38 +19,53 @@
 <body>
     
 <?php
-// Include necessary files
+// incluindo os arquivos nescessario
 require_once "form-cadastrarCategoria.php";
 require_once "banco.php";
 require_once "functions.php";
+require_once "head.php";
 
-// Check if form was submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if 'action' is set in $_POST
-    if (isset($_POST['action'])) {
-        $action = $_POST['action'];
-        
-        // Check the value of 'action' to determine the operation
-        if ($action === 'cadastrar') {
-            // Cadastrar operation (add category)
-            if (isset($_POST['categoria'])) {
-                $categoria = $_POST['categoria'];
-                cadastrarCategoria($categoria, true); // Function to add category
-            } else {
-                echo 'Erro: Categoria não especificada.';
-            }
-        } elseif ($action === 'deletar') {
-
-            $categoria = $_POST['categoria'];
-            deletarCategoria($categoria);
-
-        } else {
-            echo 'Ação não reconhecida.';
-        }
-    } else {
-        echo 'Ação não especificada.';
-    }
+//checkaa secao domeu usuario para passar o valor de usuario comoparametropara funcoes
+if (!isset($_SESSION['usuario'])) {
+    echo 'Erro: Usuário não está logado.';
+    exit;
 }
+
+$usuario = $_SESSION['usuario'];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //checka a acao passada
+        if (isset($_POST['action'])) {
+            $action = $_POST['action'];
+            
+            //checka a acao escolhidda para determinar a operacao
+            if ($action === 'cadastrar') {
+                //cadastrar nova categoria no banco
+                if (isset($_POST['categoria'])) {
+                    $categoria = $_POST['categoria'];
+
+
+        /* chama funcao de cadastrar categoria passando o parametro
+         $usuario e $categoria isso garante que o id do usuario sera passado junto */
+                   cadastrarNovaCategoria($usuario, $categoria);
+                } else {
+                    echo 'Erro: Categoria não especificada.';
+                }
+            } elseif ($action === 'deletar') {
+    
+         
+                $categoria = $_POST['categoria'];
+                deletarCategoria($usuario, $categoria);
+    
+            } else {
+                echo 'Ação não reconhecida.';
+            }
+        } else {
+            echo 'Ação não especificada.';
+        }
+}
+
+
 ?>
 
 <h1 class="categoriasTitule">Categorias Cadastradas</h1>
@@ -60,8 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php 
         
        
-
-        $categoria = GetAllCategoria();
+    /* featch das categorias na pagina, passado o id do usuaruio para que o featch
+    contenha apenas as categorias desse ususario*/
+        $categoria = GetAllCategoria($usuario);
 
         if ($categoria != false) {
             foreach ($categoria as $categorias) {
@@ -80,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <style>
     .categorias-cadastradas{
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* Default setting for larger screens */
+        grid-template-columns: repeat(5, 1fr);
         justify-content: center;
         gap: 1em;
         padding: 1em 10em;
@@ -107,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     .categoriasTitule{
         font-family: Arial, Helvetica, sans-serif;
-        margin-left: 1.5em;
+        margin-left: 8em;
         font-size: 20px;
         color:rgb(154, 154, 154);
     }

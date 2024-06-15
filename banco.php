@@ -50,11 +50,10 @@
     function criarUsuario($usuario, $nome, $senha, bool $debug=false) : void {
         global $banco;
 
-        // $q = "INSERT INTO usuarios(cod, usuario, nome, senha) VALUES (NULL, 'pedroca', 'pedro', '122')";
+     
 
         $senha = password_hash($senha, PASSWORD_DEFAULT);
-        // createOnDB("usuarios(cod, usuario, nome, senha)", "(NULL, '$usuario', '$nome', '$senha')");
-
+      
         $q = "INSERT INTO usuarios(cod, usuario, nome, senha) VALUES (NULL, '$usuario', '$nome', '$senha')";
         
         $resp = $banco->query($q);
@@ -78,10 +77,9 @@
             $set = "senha='$senha'";
         }
 
-        // $q = "UPDATE usuarios SET senha='$senha' WHERE usuario='$usuario'";
+       
         $q = "UPDATE usuarios SET $set WHERE usuario='$usuario'";
-        // updateOnDB("usuarios", $set, "usuario='$usuario'");
-        // updateOnDB("usuarios", "nome='$nome', senha='$senha'", "usuario='$usuario'");
+
 
 
         $resp = $banco->query($q);
@@ -98,7 +96,7 @@
         $q = "SELECT usuario, nome, senha FROM usuarios WHERE usuario='$usuario'";
 
         $busca = $banco->query($q);
-        // echo var_dump($busca);
+
 
         return $busca;
     }
@@ -118,74 +116,175 @@
 
 
     // funcao para cadastro de novas categorias
-    function cadastrarCategoria(String $categoria, bool $debug=false){
+    function cadastrarCategoria(String $user_id, $categoria,  bool $debug=false){
+
         global $banco;
 
-        $q = "INSERT INTO categorias (categoria) VALUES (?)";
-
-        if ($stmt = $banco->prepare($q)) {
-           
-            $stmt->bind_param("s", $categoria);
+        // Check if the category already exists for the user
+        $check_query = "SELECT COUNT(*) AS count FROM `categorias` WHERE `user_id` = ? AND `categoria` = ?";
+        
+        if ($stmt_check = $banco->prepare($check_query)) {
+            $stmt_check->bind_param("ss", $user_id, $categoria);
+            $stmt_check->execute();
+            $stmt_check->bind_result($count);
+            $stmt_check->fetch();
+            $stmt_check->close();
     
-            $resp = $stmt->execute();
-
-            //if ($debug) {
-               // echo "Query: $q\n";
-              //  echo "Category: $categoria\n";
-               // echo "Execution response: " . var_dump($resp) . "\n";
-           // }
-
-            $stmt->close();
+            // If count is greater than 0, category already exists
+            if ($count > 0) {
+                //feedbacka para o ususario
+                //echo "Categoria '$categoria' já existe para o usuário '$user_id'.";
+                return false;
+            }
         } else {
             if ($debug) {
-                echo "Error preparing statement: " . $banco->error;
+                echo "Error preparing statement for check: " . $banco->error;
             }
+            return false;
+        }
+    
+        // If category does not exist, proceed with insertion
+        $insert_query = "INSERT INTO `categorias` (`user_id`, `categoria`) VALUES (?, ?)";
+        
+        if ($stmt_insert = $banco->prepare($insert_query)) {
+            $stmt_insert->bind_param("ss", $user_id, $categoria);
+            $resp = $stmt_insert->execute();
+            $stmt_insert->close();
+    
+            // Check execution response
+            if ($resp) {
+                if ($debug) {
+                    echo "Categoria '$categoria' cadastrada com sucesso para o usuário '$user_id'.";
+                }
+                return true;
+            } else {
+                if ($debug) {
+                    echo "Erro ao cadastrar a categoria.";
+                }
+                return false;
+            }
+        } else {
+            if ($debug) {
+                echo "Error preparing statement for insertion: " . $banco->error;
+            }
+            return false;
         }
     }
 
-    // funcao para fazer o featch (buscar) todas as categorias do banco
-    function featchCategoria(){
+    // funcao para fazer o featch (buscar) todas as categorias do banco baseado no ususario
+    function fetchUserCategoria(string $user_id) {
+        global $banco;
+    
+        $q = "SELECT * FROM `categorias` WHERE `user_id` LIKE ?";
+    
+        if ($stmt = $banco->prepare($q)) {
+         //bind o paramtro usuario_id para que o featch puxe dobancoapenas os dados daquele usuario
+            $stmt->bind_param("s", $user_id);
+    
+            // Executa a query
+            if ($stmt->execute()) {
+              // pege todos os resultados encontrados
+                $resultado = $stmt->get_result();
+    
+                // Fetch os dados
+                $categorias = $resultado->fetch_all(MYSQLI_ASSOC);
+    
+                // libera o resultado
+                $resultado->free();
+    
+                // fecha acao
+                $stmt->close();
+    
+                return $categorias;
+            } else {
+                echo "Query execution error: " . $stmt->error;
+            }
+        } else {
+            echo "Error preparing statement: " . $banco->error;
+        }
+    
+        return false;
+    }
+    function deletarCategoriaDb(String $user_id, $categoria){
+
+        global $banco; 
+
+            $categoria = $banco->real_escape_string($categoria);
+
+            /* realiza a acao no banco para pegar categorias baseadas no id 
+            isso garante que o ususario possa apagar apenas categorias que possuam seu id */
+            $q = "DELETE FROM `categorias` WHERE `user_id` = '{$user_id}' AND `categoria` = '{$categoria}'";
+
+            // executa a acao
+            $resultado = $banco->query($q);
+
+            // checka a acao 
+            if ($resultado === false) {
+                echo "Query error: " . $banco->error;
+                return false;
+            }
+
+            // Rretorna a acao se houver sucesso
+            return true;
+
+    }
+
+    function cadastrarNovaRaceita(String $user_id, $nome, $categoria, $file_path, $conteudo, bool $debug=false){
         global $banco;
 
-        $q = "SELECT * FROM `categorias`";
+        echo 'function called';
 
-
-        $resultado = $banco->query($q);
-
-       if($resultado === false){
-            echo "Query error: " . $banco->error;
-            return false;
-       }
-
-
-       $categoria = $resultado ->fetch_all(MYSQLI_ASSOC);
-
-       $resultado->free();
-
-       return $categoria;
-
-    }
-
-    function deletarCategoriaDb(String $categoria){
-        global $banco; // Assuming $banco is your database connection object
+        // Check if the recipe already exists for the user
+        $check_query = "SELECT COUNT(*) AS count FROM `receitas` WHERE `user_id` = ? AND `nome` = ?";
+        
+        if ($stmt_check = $banco->prepare($check_query)) {
+            $stmt_check->bind_param("ss", $user_id, $nome);
+            $stmt_check->execute();
+            $stmt_check->bind_result($count);
+            $stmt_check->fetch();
+            $stmt_check->close();
     
-        // Escape the category name to prevent SQL injection
-        $categoria = $banco->real_escape_string($categoria);
-    
-        // Construct the SQL query to delete the category
-        $q = "DELETE FROM `categorias` WHERE `categoria` = '{$categoria}'";
-    
-        // Execute the query
-        $resultado = $banco->query($q);
-    
-        // Check if the query execution was successful
-        if($resultado === false){
-            echo "Query error: " . $banco->error;
+            // If count is greater than 0, recipe already exists
+            if ($count > 0) {
+                // Feedback to the user or handle accordingly
+                if ($debug) {
+                    echo "Recipe '$nome' already exists for user '$user_id'.";
+                }
+                return false;
+            }
+        } else {
+            // Error preparing statement for check
+            if ($debug) {
+                echo "Error preparing statement for check: " . $banco->error;
+            }
             return false;
         }
     
-        // Return true indicating success
-        return true;
+        $insert_query = "INSERT INTO `receitas` (`user_id`, `nome`, `categoria`, `file_path`, `conteudo`) VALUES (?, ?, ?, ?, ?)";
+        
+        if ($stmt_insert = $banco->prepare($insert_query)) {
+            $stmt_insert->bind_param("sssss", $user_id, $nome, $categoria, $file_path, $conteudo);
+            $resp = $stmt_insert->execute();
+            $stmt_insert->close();
+    
+            if ($resp) {
+                if ($debug) {
+                    echo "Recipe cadastrada com sucesso";
+                }
+                return true;
+            } else {
+                if ($debug) {
+                    echo "Erro ao cadastrar a receita.";
+                }
+                return false;
+            }
+        } else {
+            if ($debug) {
+                echo "Error preparing statement for insertion: " . $banco->error;
+            }
+            return false;
+        }
+
     }
 
 ?>
