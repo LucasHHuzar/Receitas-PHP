@@ -58,4 +58,31 @@ require_once "upload.php";
             return $escolha;
 
         }
+
+
+        function getAllReceitas(){
+          
+           $result = featchTodasAsReceitas();
+
+            return $result; 
+
+        }
+
+        function getAllCategorias(){
+           $result = featchTodasAsCategorias();
+
+           return $result;
+
+        }
+
+        function getReceitasPorCategoria($categoria) {
+            $resultado = fetchReceitaPorCategoria($categoria);
+            return $resultado;
+        }
+
+        function getReceitaPorNome($nome){
+            
+            $resultado = featchReceitaPicked($nome);
+            return $resultado;
+        }
 ?>

@@ -116,15 +116,14 @@
 
 
     // funcao para cadastro de novas categorias
-    function cadastrarCategoria(String $user_id, $categoria,  bool $debug=false){
-
+    function cadastrarCategoria(string $user_id, string $categoria, bool $debug = false) {
         global $banco;
-
-        // Check if the category already exists for the user
-        $check_query = "SELECT COUNT(*) AS count FROM `categorias` WHERE `user_id` = ? AND `categoria` = ?";
+    
+        // Check if the category already exists
+        $check_query = "SELECT COUNT(*) AS count FROM `categorias` WHERE `categoria` = ?";
         
         if ($stmt_check = $banco->prepare($check_query)) {
-            $stmt_check->bind_param("ss", $user_id, $categoria);
+            $stmt_check->bind_param("s", $categoria);
             $stmt_check->execute();
             $stmt_check->bind_result($count);
             $stmt_check->fetch();
@@ -132,8 +131,10 @@
     
             // If count is greater than 0, category already exists
             if ($count > 0) {
-                //feedbacka para o ususario
-                //echo "Categoria '$categoria' já existe para o usuário '$user_id'.";
+                // Feedback to the user
+                if ($debug) {
+                    echo "Categoria '$categoria' já existe.";
+                }
                 return false;
             }
         } else {
@@ -178,7 +179,7 @@
         $q = "SELECT * FROM `categorias` WHERE `user_id` LIKE ?";
     
         if ($stmt = $banco->prepare($q)) {
-         //bind o paramtro usuario_id para que o featch puxe dobancoapenas os dados daquele usuario
+         //bind o paramtro usuario_id para que o featch puxe do bancoa penas os dados daquele usuario
             $stmt->bind_param("s", $user_id);
     
             // Executa a query
@@ -232,7 +233,6 @@
     function cadastrarNovaRaceita(String $user_id, $nome, $categoria, $file_path, $conteudo, bool $debug=false){
         global $banco;
 
-        echo 'function called';
 
         // Check if the recipe already exists for the user
         $check_query = "SELECT COUNT(*) AS count FROM `receitas` WHERE `user_id` = ? AND `nome` = ?";
@@ -269,7 +269,7 @@
     
             if ($resp) {
                 if ($debug) {
-                    echo "Recipe cadastrada com sucesso";
+                  //  echo "Recipe cadastrada com sucesso";
                 }
                 return true;
             } else {
@@ -287,5 +287,117 @@
 
     }
 
+    function featchTodasAsCategorias(){
+        global $banco;
+
+        $query = "SELECT * FROM `categorias`";
+
+        if($result = $banco->query($query)){
+            $categorias = $result->fetch_all(MYSQLI_ASSOC);
+
+            $result->free();
+
+            return $categorias;
+       }
+    }
+
+
+
+    function featchTodasAsReceitas(){
+        global $banco; // Assuming $banco is your database connection object
+
+        // Prepare the SQL query to fetch all recipes
+        $query = "SELECT * FROM `receitas`";
+    
+        // Execute the query and check for errors
+        if ($result = $banco->query($query)) {
+            // Fetch all results as an associative array
+            $receitas = $result->fetch_all(MYSQLI_ASSOC);
+            
+            // Free the result set
+            $result->free();
+    
+            // Return the array of recipes
+            return $receitas;
+        } else {
+            // Handle the error
+            echo "Error executing query: " . $banco->error;
+            return false; // or you could return an empty array []
+        }
+    }
+
+    function fetchReceitaPorCategoria($categoria){
+        global $banco;
+    
+        $q = "SELECT * FROM `receitas` WHERE `categoria` LIKE ?";
+    
+        if ($stmt = $banco->prepare($q)) {
+            // Bind the parameter
+            $param = "%{$categoria}%"; // Adjust if you need exact match or partial match
+            $stmt->bind_param("s", $param);
+            
+            // Execute the statement
+            if ($stmt->execute()) {
+                // Get result set
+                $result = $stmt->get_result();
+                $receitas = $result->fetch_all(MYSQLI_ASSOC);
+                
+                // Free result set
+                $result->free();
+                
+                // Close statement
+                $stmt->close();
+                
+                return $receitas;
+            } else {
+                echo "Error executing query: " . $stmt->error;
+                return false;
+            }
+        } else {
+            echo "Error preparing statement: " . $banco->error;
+            return false;
+        }
+    }
+
+
+    function featchReceitaPicked($nome){
+
+        global $banco;
+
+        $q = "SELECT * FROM `receitas` WHERE `nome` LIKE ?"; // Removed quotes around ?
+    
+        if ($stmt = $banco->prepare($q)) {
+            // Bind the parameter
+            $param = "%{$nome}%"; // Adjust if you need exact match or partial match
+            $stmt->bind_param("s", $param);
+            
+            // Execute the statement
+            if ($stmt->execute()) {
+                // Get result set
+                $result = $stmt->get_result();
+                $receitas = $result->fetch_all(MYSQLI_ASSOC);
+                
+                // Free result set
+                $result->free();
+                
+                // Close statement
+                $stmt->close();
+                
+                return $receitas;
+            } else {
+                echo "Error executing query: " . $stmt->error;
+                return false;
+            }
+        } else {
+            echo "Error preparing statement: " . $banco->error;
+            return false;
+        }
+
+    }
 ?>
+
+
+
+
+
 </pre>

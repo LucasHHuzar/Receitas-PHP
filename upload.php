@@ -51,8 +51,8 @@ function uploadFile($file){
         echo "Desculpe, seu arquivo não foi enviado.";
     } else {
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-            
-         return  "/img/" . basename($file["name"]);
+
+         return  "img/" . basename($file["name"]);
         //    echo "O arquivo ". htmlspecialchars(basename($_FILES["file"]["name"])). " foi enviado com sucesso.";
         } else {
            // echo "Desculpe, houve um erro ao enviar seu arquivo.";

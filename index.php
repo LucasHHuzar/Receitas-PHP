@@ -18,7 +18,7 @@
 </header>
     
 <section>
-  <img src="img\coxinha-de-frango-com-requeijao-mini-congelada.jpg" alt="image not founded">
+  <?php  require_once "amosradorDeReceitas.php" ?>
 </section>
 
 </body>

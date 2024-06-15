@@ -38,15 +38,41 @@
                        </div>
                      
                         
-
                 </div>
 
         
-                    <div class="menuCategorias">
-                                 
-                               
-                              
-                                </div>
+                        <div class="menuCategorias">
+                        
+                            <a href="index.php" class="categoria-link">Pagina inicial</a>
+                                <?php require_once "functions.php";
+                                
+                                $count = 0;
+                                $max_count  = 10;
+
+                                    $fetch = getAllCategorias();
+
+                                    if($fetch != false){
+                                        foreach($fetch as $featch){
+                                            if($count >= $max_count){
+                                                break;
+                                            }
+                                            $categoria = urlencode($featch['categoria']);
+                                            $url = "receitasPorCategoria.php?categoria={$categoria}";
+                                                echo "<div class='categorias'>";
+                                                echo "<a href='{$url}' class='categoria-link'>" . htmlspecialchars($featch['categoria']) . "</a>";
+                                                echo "</div'>";
+                                           $count++;
+                                           
+                                        }
+                                        
+                                    }
+                                
+                                ?>
+                            
+                                    <a href="todasAsReceitas.php" class="categoria-link">Todas as categorias</a>
+                                
+                        </div>
+
                     </div>
                             
              
@@ -129,6 +155,7 @@
 .menuCategorias{
     display: flex;
     gap: 1em;
+    align-items: center;
     background-color: rgb(56, 66, 210);
     padding: 1em;
     justify-content: center;
@@ -136,4 +163,23 @@
     background-color: rgb(252, 43, 43);
 }
 
+.categorias{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+.categoria-link{
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1em;
+    transition: 300ms ease-in-out;
+    border-radius: 1em;
+}
+
+.categoria-link:hover{
+    cursor: pointer;
+    background-color: blue;
+    background-color: rgb(56, 66, 210);
+}
 </style>
