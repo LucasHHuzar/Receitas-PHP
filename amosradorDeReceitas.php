@@ -51,7 +51,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
-    padding: 5em 50em 10em 50em ;
+    padding: 5em 50em;
 }
 
 .receitaImage{

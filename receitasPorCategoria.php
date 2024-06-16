@@ -66,9 +66,9 @@
 }
 .container{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    padding: 5em 100em 10em 100em ;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: start; /* Alinha os itens da grade à esquerda */
+   padding: 5em 50em;
 }
 
 .receitaImage{
