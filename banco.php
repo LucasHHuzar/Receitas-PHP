@@ -119,7 +119,7 @@
     function cadastrarCategoria(string $user_id, string $categoria, bool $debug = false) {
         global $banco;
     
-        // Check if the category already exists
+      
         $check_query = "SELECT COUNT(*) AS count FROM `categorias` WHERE `categoria` = ?";
         
         if ($stmt_check = $banco->prepare($check_query)) {
@@ -129,9 +129,9 @@
             $stmt_check->fetch();
             $stmt_check->close();
     
-            // If count is greater than 0, category already exists
+          
             if ($count > 0) {
-                // Feedback to the user
+
                 if ($debug) {
                     echo "Categoria '$categoria' já existe.";
                 }
@@ -144,7 +144,7 @@
             return false;
         }
     
-        // If category does not exist, proceed with insertion
+    
         $insert_query = "INSERT INTO `categorias` (`user_id`, `categoria`) VALUES (?, ?)";
         
         if ($stmt_insert = $banco->prepare($insert_query)) {
@@ -152,7 +152,7 @@
             $resp = $stmt_insert->execute();
             $stmt_insert->close();
     
-            // Check execution response
+
             if ($resp) {
                 if ($debug) {
                     echo "Categoria '$categoria' cadastrada com sucesso para o usuário '$user_id'.";
@@ -234,7 +234,7 @@
         global $banco;
 
 
-        // Check if the recipe already exists for the user
+
         $check_query = "SELECT COUNT(*) AS count FROM `receitas` WHERE `user_id` = ? AND `nome` = ?";
         
         if ($stmt_check = $banco->prepare($check_query)) {
@@ -244,16 +244,16 @@
             $stmt_check->fetch();
             $stmt_check->close();
     
-            // If count is greater than 0, recipe already exists
+
             if ($count > 0) {
-                // Feedback to the user or handle accordingly
+            
                 if ($debug) {
                     echo "Recipe '$nome' already exists for user '$user_id'.";
                 }
                 return false;
             }
         } else {
-            // Error preparing statement for check
+
             if ($debug) {
                 echo "Error preparing statement for check: " . $banco->error;
             }
@@ -304,25 +304,25 @@
 
 
     function featchTodasAsReceitas(){
-        global $banco; // Assuming $banco is your database connection object
+        global $banco;
 
-        // Prepare the SQL query to fetch all recipes
+
         $query = "SELECT * FROM `receitas`";
     
-        // Execute the query and check for errors
+    
         if ($result = $banco->query($query)) {
-            // Fetch all results as an associative array
+
             $receitas = $result->fetch_all(MYSQLI_ASSOC);
             
-            // Free the result set
+          
             $result->free();
     
-            // Return the array of recipes
+
             return $receitas;
         } else {
-            // Handle the error
+ 
             echo "Error executing query: " . $banco->error;
-            return false; // or you could return an empty array []
+            return false; 
         }
     }
 
@@ -332,20 +332,20 @@
         $q = "SELECT * FROM `receitas` WHERE `categoria` LIKE ?";
     
         if ($stmt = $banco->prepare($q)) {
-            // Bind the parameter
-            $param = "%{$categoria}%"; // Adjust if you need exact match or partial match
+ 
+            $param = "%{$categoria}%"; 
             $stmt->bind_param("s", $param);
             
-            // Execute the statement
+        
             if ($stmt->execute()) {
-                // Get result set
+             
                 $result = $stmt->get_result();
                 $receitas = $result->fetch_all(MYSQLI_ASSOC);
                 
-                // Free result set
+          
                 $result->free();
                 
-                // Close statement
+    
                 $stmt->close();
                 
                 return $receitas;
@@ -364,23 +364,23 @@
 
         global $banco;
 
-        $q = "SELECT * FROM `receitas` WHERE `nome` LIKE ?"; // Removed quotes around ?
+        $q = "SELECT * FROM `receitas` WHERE `nome` LIKE ?"; 
     
         if ($stmt = $banco->prepare($q)) {
-            // Bind the parameter
-            $param = "%{$nome}%"; // Adjust if you need exact match or partial match
+
+            $param = "%{$nome}%"; 
             $stmt->bind_param("s", $param);
             
-            // Execute the statement
+          
             if ($stmt->execute()) {
-                // Get result set
+              
                 $result = $stmt->get_result();
                 $receitas = $result->fetch_all(MYSQLI_ASSOC);
                 
-                // Free result set
+                
                 $result->free();
                 
-                // Close statement
+
                 $stmt->close();
                 
                 return $receitas;

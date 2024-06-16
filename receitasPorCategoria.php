@@ -14,36 +14,42 @@
     </header>
 
     <section>
-    <?php 
-require_once "functions.php";
+        <div>
+        <h1 class="top">Receitas selecionadas para o seu gosto</h1>
+        </div>
+        <div  class="container" >
+         <?php 
+            require_once "functions.php";
 
-// Retrieve categoria from URL query string
-$categoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+           
+            $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
 
-// Call function to fetch receitas based on categoria
-$resultado = getReceitasPorCategoria($categoria);
 
-// Now you can iterate through $resultado and display the receitas
-if ($resultado !== false) {
-    foreach ($resultado as $receita) {
-        // Display each receita with a clickable link
-        $nome = urlencode($receita['nome']);
-        $url = "receita.php?nome={$nome}"; // Replace with your receita page URL
+            $resultado = getReceitasPorCategoria($categoria);
 
-        echo "<div class='receitaContainer'>";
-        echo "<a href='{$url}' class='receitaLink'>";
-        echo "<div class='container'>";
-        echo "<img src='" . htmlspecialchars($receita['file_path']) . "' alt='" . htmlspecialchars($receita['nome']) . "' class='receitaImage'>";
-        echo "<p>" . htmlspecialchars($receita['categoria']) . "</p>";
-        echo "<h2>" . htmlspecialchars($receita['nome']) . "</h2>";
-        echo "</div>";
-        echo "</a>";
-        echo "</div>";
-    }
-} else {
-    echo "No receitas found for categoria: " . htmlspecialchars($categoria);
-}
-?>
+        
+            if ($resultado !== false) {
+                foreach ($resultado as $receita) {
+
+                    $nome = urlencode($receita['nome']);
+                    $url = "receita.php?nome={$nome}"; 
+
+                    echo "<div class='receitaContainer'>";
+                       echo "<a href='{$url}' class='receitaLink'>";
+                         echo "<div class='receitaContainer'>";
+                             echo "<img src='" . htmlspecialchars($receita['file_path']) . "' alt='" . htmlspecialchars($receita['nome']) . "' class='receitaImage'>";
+                             echo "<p>" . htmlspecialchars($receita['categoria']) . "</p>";
+                             echo "<h2>" . htmlspecialchars($receita['nome']) . "</h2>";
+                         echo "</div>";
+                       echo "</a>";
+                    echo "</div>";
+                }
+            } else {
+                echo "No receitas found for categoria: " . htmlspecialchars($categoria);
+            }
+            ?>
+        </div>
+   
     </section>
 
 </body>
@@ -51,42 +57,47 @@ if ($resultado !== false) {
 
 <style>
 
-
-.element{
-    padding: 10em;
-    margin-left: 4.5em;
-    display: flex;
-    justify-content: center;
+.top{
     font-family: Arial, Helvetica, sans-serif;
-
+    font-size: 50px;
+    text-align: center;
+    margin-top: 3em;
+    color: grey;
 }
-.receitaContainer{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    align-items: center;
-
-}
-
 .container{
-    padding: 5em;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    padding: 5em 100em 10em 100em ;
 }
 
 .receitaImage{
-    width: 500px;
-    height: 300px;
+    width: 600px;
+    height: 400px;
+    border-radius: 1em;
+    transition: 500ms ease-in-out;
+}
+
+.receitaContainer{
     padding: 1em;
-    transition:  300ms ease-in-out;
+   
 }
-
+.receitaLink{
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
+    transition: 300ms ease-in-out;
+   
+}
 .receitaImage:hover{
-    width: 520px;
-    height: 320px;
-    cursor: pointer;
+    transform: scale(1.1);
+    margin-bottom: 1em;
 }
-
-.contentInside{
-    background-color: red;
+.receitaLink:hover{
+    color: rgb(56, 66, 210);
+    cursor: pointer;
+  
 }
 
 </style>

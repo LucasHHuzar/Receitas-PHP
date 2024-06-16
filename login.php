@@ -26,7 +26,7 @@
                 require_once "form-login.php";
 
             }else{
-                require_once "form-login.php"; // para testes
+                require_once "form-login.php"; 
 
                 $busca = buscarUsuario($usuario);
 

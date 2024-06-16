@@ -27,7 +27,7 @@
     }
 
     function logout(){
-        echo "<a href=\"logout-usuario.php\"  class=\"user-menu\">Deslogar</a>";
+        echo "<a href=\"logout-page.php\"  class=\"user-menu\">Deslogar</a>";
     }
 
 ?>

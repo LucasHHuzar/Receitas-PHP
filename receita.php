@@ -13,26 +13,27 @@
     </header>
 
     <section>
-            <?php
+        <div class="receita">
+        <?php
             require_once "functions.php";
 
-            // Check if nome parameter exists in the URL
+
             if (isset($_GET['nome'])) {
                 $nome = $_GET['nome'];
                 
-                // Call function to fetch recipe details based on nome
+                
                 $receita = getReceitaPorNome($nome);
 
-                // Check if recipe was found
+
                 if ($receita !== false) {
-                    // Display recipe details
+
                     foreach ($receita as $recipe) {
                         echo "<div class='receitaDetalhada'>";
-                        echo "<h2>" . htmlspecialchars($recipe['nome']) . "</h2>";
-                        echo "<p>Categoria: " . htmlspecialchars($recipe['categoria']) . "</p>";
-                        echo "<img src='" . htmlspecialchars($recipe['file_path']) . "' alt='" . htmlspecialchars($recipe['nome']) . "' class='detalheImagem'>";
-                        echo "<p>Conteúdo: " . htmlspecialchars($recipe['conteudo']) . "</p>";
-                        echo "</div>";
+                                echo "<h2 class='top'>" . htmlspecialchars($recipe['nome']) . "</h2>";
+                                echo "<p class='categoriaReceita'>". htmlspecialchars($recipe['categoria']) . "</p>";
+                                echo "<img src='" . htmlspecialchars($recipe['file_path']) . "' alt='" . htmlspecialchars($recipe['nome']) . "' class='detalheImagem'>";
+                                echo "<p class='conteudoReceita'>" . htmlspecialchars($recipe['conteudo']) . "</p>";
+                            echo "</div>";
                     }
                 } else {
                     echo "Receita não encontrada.";
@@ -41,6 +42,37 @@
                 echo "Nome da receita não especificado.";
             }
         ?>
+        </div>
+          
     </section>
 </body>
 </html>
+
+<style>
+.receita{
+
+    text-align: center;
+}
+
+.top{
+    margin-top: 2em;
+    font-size: 50px;
+    color: grey;
+}
+
+.categoriaReceita{
+    font-size: 25px;
+    margin-right: 54em;
+}
+
+.detalheImagem{
+    width: 1450px;
+    height: 1000px;
+}
+
+.conteudoReceita{
+    margin: 3em 26em;
+    font-size: 40px;
+
+}
+</style>

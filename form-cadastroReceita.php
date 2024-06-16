@@ -34,9 +34,8 @@
                         options com as categorias do banco 
                         */
 
-                        $categoria = GetAllCategoria($usuario);
+                        $categoria = getAllCategorias();
 
-                        echo var_dump($categoria);
 
                         if($categoria != false) {
                             //loop para pegar as categorias e criar um elemento tipo option com os dados
