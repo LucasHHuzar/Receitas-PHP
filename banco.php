@@ -394,6 +394,51 @@
         }
 
     }
+
+    function fetchDeReceitasPorUsuario($user_id){
+
+        global $banco;
+
+        $query = "SELECT * FROM `receitas` WHERE `user_id` LIKE ?";
+
+        if($stmt = $banco->prepare($query)){
+            $stmt->bind_param("s", $user_id);
+
+            if($stmt->execute()){
+                $resultado = $stmt->get_result();
+
+                $receitas = $resultado->fetch_all(MYSQLI_ASSOC);
+
+                $resultado->free();
+
+                $stmt->close();
+
+                return $receitas;
+            }else{
+                echo "Erro ao executar query" . $banco->error;
+            }
+
+        }else{
+            echo "Erro ao preparar banco query" . $banco->error;
+           
+        }
+        return false;
+    }
+
+    function deletarReceitaUsuario($user_id, $receita){
+        global $banco;
+
+        $query = "DELETE FROM `receitas` WHERE `user_id` = '{$user_id}' AND `nome` = '{$receita}'";
+
+        $resultado = $banco->query($query);
+
+        if($resultado === false){
+            echo "Query error: " . $banco->error;
+            return false;
+        }
+
+        return true;
+    }
 ?>
 
 

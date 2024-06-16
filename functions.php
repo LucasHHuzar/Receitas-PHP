@@ -85,4 +85,19 @@ require_once "upload.php";
             $resultado = featchReceitaPicked($nome);
             return $resultado;
         }
+
+        function getReceitasDosuario($user){
+            $resultado = fetchDeReceitasPorUsuario($user);
+
+            return $resultado;
+        }
+
+        function deletarReceitaDoUsuario($user, $nome){
+
+            $resultado = deletarReceitaUsuario($user, $nome);
+
+            return $resultado;
+
+        }
 ?>
+

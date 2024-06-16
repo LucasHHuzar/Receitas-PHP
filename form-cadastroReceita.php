@@ -1,7 +1,12 @@
 <form action="" method="post" enctype="multipart/form-data">
     <div>
-
+        <div class="paginasAdicionais">
+            <a class="funcoesAdiconais" href="deletarReceitas.php">Deletar Receitas</a>
+            <a  class="funcoesAdiconais" href="">Editar Receitas</a>
+        </div>
     <div class="headederForms">
+
+   
 
     <div class="info">
         <div class="p">
@@ -10,6 +15,7 @@
        
     </div>
 
+    
     
         <input class="inputsText" type="text"  name="nomePrato" id="" placeholder="nome da receita">
         <label for="imageUpload" class="inputs">Selecionar imagens</label>
@@ -101,6 +107,28 @@ cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
 ?>
 <style>
 
+.paginasAdicionais{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+.funcoesAdiconais{
+    background-color: rgb(252, 43, 43);
+    padding: 1em;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 1em;
+    transition:  300ms ease-in-out;
+}
+.funcoesAdiconais:hover{
+    cursor: pointer;
+    background-color: rgb(56, 66, 210);
+}
 .headederForms{
     display: flex;
     align-items: center;
