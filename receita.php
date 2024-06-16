@@ -66,13 +66,13 @@
 }
 
 .detalheImagem{
-    width: 1450px;
-    height: 1000px;
+    width: 800px;
+    height: 500px;
 }
 
-.conteudoReceita{
-    margin: 3em 26em;
+.conteudoReceita {
     font-size: 40px;
-
+    max-width: 60em;
+    text-align: justify;
 }
 </style>

@@ -67,8 +67,8 @@
 .container{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    padding: 5em 100em 10em 100em ;
+    justify-content: start; /* Alinha os itens da grade à esquerda */
+    padding: 5em 2em 10em 2em;
 }
 
 .receitaImage{

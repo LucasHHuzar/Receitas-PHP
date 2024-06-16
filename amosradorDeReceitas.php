@@ -49,9 +49,9 @@
 }
 .container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-content: center;
-    padding: 5em 50em 10em 50em ;
+    padding: 5em 100em 10em 100em ;
 }
 
 .receitaImage{
