@@ -1,26 +1,29 @@
 <header>
+    <div>
+        <div class="cabecalho">
             <div>
-                <div class="cabecalho">
-                        <div>
-                           <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE13zAlmPuC9YmevJRJ4VJV0tSE9cpjM4KOg&s" alt="image not founded">
-                        </div>
+                <img class="logo"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE13zAlmPuC9YmevJRJ4VJV0tSE9cpjM4KOg&s"
+                    alt="image not founded">
+            </div>
 
-                       <div>
+            <div>
 
-                       <?php 
+                <?php 
 
                         require_once "navigation.php"; require_once "head.php";?>
 
-                            <div>
-                                <button class="interacaoUsuario" onclick="displayMenu()" >   <?php echo isset($usuario) ? htmlspecialchars($usuario) : 'Usuário'; ?></button>
-                            </div>
-                                    <div class="menu" id=displayMenu > 
-                                    
-                                            <div class="menuOptions">
-                                                                                            
-                                                 
-                                                
-                                                    <?php
+                <div>
+                    <button class="interacaoUsuario" onclick="displayMenu()">
+                        <?php echo isset($usuario) ? htmlspecialchars($usuario) : 'Usuário'; ?></button>
+                </div>
+                <div class="menu" id=displayMenu>
+
+                    <div class="menuOptions">
+
+
+
+                        <?php
                                                     
                                                     if($usuario == null){
                                                         login(); 
@@ -31,20 +34,20 @@
                                                         logout();
                                                     } ?>
 
-                                                   
-                                                    
-                                            </div>
-                                    </div>
-                       </div>
-                     
-                        
-                </div>
 
-        
-                        <div class="menuCategorias">
-                        
-                            <a href="index.php" class="categoria-link">Pagina inicial</a>
-                                <?php require_once "functions.php";
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="menuCategorias">
+
+            <a href="index.php" class="categoria-link">Pagina inicial</a>
+            <?php require_once "functions.php";
                                 
                                 $count = 0;
                                 $max_count  = 10;
@@ -68,59 +71,57 @@
                                     }
                                 
                                 ?>
-                            
-                                    <a href="todasAsReceitas.php" class="categoria-link">Todas as categorias</a>
-                                
-                        </div>
 
-                    </div>
-                            
-             
-        </header>
+            <a href="todasAsReceitas.php" class="categoria-link">Todas as categorias</a>
+
+        </div>
+
+    </div>
 
 
-        <script>
-            function displayMenu(){
-                let displayMenu = document.getElementById("displayMenu") ;
-
-             
-
-                if(displayMenu.style.display == "block"){
-                    displayMenu.style.display = "none";
-                }else{
-                    displayMenu.style.display = "block";
-                }
+</header>
 
 
-            }
+<script>
+function displayMenu() {
+    let displayMenu = document.getElementById("displayMenu");
 
+
+
+    if (displayMenu.style.display == "block") {
+        displayMenu.style.display = "none";
+    } else {
+        displayMenu.style.display = "block";
+    }
+
+
+}
 </script>
 
 
-        <!-- adicao de stilo a pagina -->
+<!-- adicao de stilo a pagina -->
 
 <style>
-
-.cabecalho{
+.cabecalho {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.logo{
+.logo {
     align-items: left;
     width: auto;
     height: auto;
     margin: 0;
 }
 
-.menu{
+.menu {
     position: relative;
     display: none;
     right: 120px;
 }
 
-.menuOptions{
+.menuOptions {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -133,7 +134,7 @@
     border-radius: 1em;
 }
 
-.interacaoUsuario{
+.interacaoUsuario {
     background-color: white;
     border: none;
     padding: 1em;
@@ -147,13 +148,13 @@
     color: white;
 }
 
-.interacaoUsuario:hover{
+.interacaoUsuario:hover {
     cursor: pointer;
     background-color: rgb(56, 66, 210);
 }
 
 
-.menuCategorias{
+.menuCategorias {
     display: flex;
     gap: 1em;
     align-items: center;
@@ -164,13 +165,13 @@
     background-color: rgb(252, 43, 43);
 }
 
-.categorias{
+.categorias {
     display: flex;
     align-items: center;
     gap: 2em;
 }
 
-.categoria-link{
+.categoria-link {
     text-decoration: none;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -179,7 +180,7 @@
     border-radius: 1em;
 }
 
-.categoria-link:hover{
+.categoria-link:hover {
     cursor: pointer;
     background-color: blue;
     background-color: rgb(56, 66, 210);
