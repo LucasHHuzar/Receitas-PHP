@@ -98,5 +98,27 @@ require_once "upload.php";
             return $resultado;
 
         }
+
+        function editarReceitaOfUser($user, $nome, $categoria, $file, $conteudo, $nomeDaReceita){
+
+            $filePath = "";
+            // checka se o arquivo o formato esta correto e se o tamanho e maior que zero
+            if ($file['size'] > 0) {
+                // chama a funcao de fazer upload do arquivo
+               $filePath = uploadFile($file);
+    
+               if($filePath){
+                //echo "File uploaded successfully. Path: " . $filePath;
+               }
+    
+            } else {
+              //  echo "No image uploaded.";
+            }
+
+                $resultado = editarReceita($user, $nome, $categoria, $filePath, $conteudo, $nomeDaReceita, true);
+
+               return $resultado;
+                
+        }
 ?>
 

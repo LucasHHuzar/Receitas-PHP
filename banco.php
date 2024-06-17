@@ -432,6 +432,72 @@
 
         return true;
     }
+    function editarReceita($user_id, $nome, $categoria, $file_path, $conteudo, $nomeParaEditar, bool $debug = false) {
+        global $banco;
+    
+        // Inicializa um array para armazenar os parâmetros e os tipos de dados
+        $params = [];
+        $types = '';
+    
+        // Constrói a query SQL base
+        $query = "UPDATE receitas SET";
+    
+        // Verifica e adiciona os parâmetros que foram fornecidos
+        if (!empty($user_id)) {
+            $query .= " user_id = ?,";
+            $params[] = $user_id;
+            $types .= 's';
+        }
+        if (!empty($nome)) {
+            $query .= " nome = ?,";
+            $params[] = $nome;
+            $types .= 's';
+        }
+        if (!empty($categoria)) {
+            $query .= " categoria = ?,";
+            $params[] = $categoria;
+            $types .= 's';
+        }
+        if (!empty($file_path)) {
+            $query .= " file_path = ?,";
+            $params[] = $file_path;
+            $types .= 's';
+        }
+        if (!empty($conteudo)) {
+            $query .= " conteudo = ?,";
+            $params[] = $conteudo;
+            $types .= 's';
+        }
+    
+        // Remove a vírgula extra no final da query
+        $query = rtrim($query, ",");
+    
+        // Adiciona a cláusula WHERE
+        $query .= " WHERE nome = ?";
+    
+        // Adiciona o nome da receita a ser editada aos parâmetros e tipos
+        $params[] = $nomeParaEditar;
+        $types .= 's';
+    
+        // Prepara e executa a query
+        if ($stmt = $banco->prepare($query)) {
+            // Bind dos parâmetros
+            $stmt->bind_param($types, ...$params);
+    
+            // Executa a query
+            $stmt->execute();
+    
+            // Fecha o statement
+            $stmt->close();
+        } else {
+            echo "Erro ao executar query: " . $banco->error;
+            return false;
+        }
+    
+        return true;
+    }
+    
+
 ?>
 
 </pre>

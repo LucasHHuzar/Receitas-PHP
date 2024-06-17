@@ -4,7 +4,7 @@
 
         <div class="paginasAdicionais">
             <a class="funcoesAdiconais" href="deletarReceitas.php">Deletar Receitas</a>
-            <a class="funcoesAdiconais" href="">Editar Receitas</a>
+            <a class="funcoesAdiconais" href="editarReceitaPagina.php">Editar Receitas</a>
         </div>
 
     <div class="headederForms">
@@ -88,7 +88,7 @@ $nomePrato = $_POST['nomePrato'];
 $tipoPrato = $_POST['tipoPrato'];
 $file = $_FILES['file'];
 
-$conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : ''; // Check if 'conteudo' is set
+$conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : '';
 
 cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
 
