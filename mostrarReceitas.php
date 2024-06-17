@@ -52,8 +52,47 @@
 .container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    justify-content: start; /* Alinha os itens da grade à esquerda */
-    padding: 5em 2em 10em 2em; /* Ajusta o padding para não empurrar o conteúdo para a direita */
+    justify-content: center; 
+
+   
+}
+
+
+@media only screen and (max-width: 600px) {
+    .container{
+   
+    grid-template-columns: repeat(1, 1fr);
+   
+}
+}
+
+/* Tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .container{
+   
+    grid-template-columns: repeat(2, 1fr);
+   
+}
+}
+
+/* Laptops e desktops de tamanho médio */
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+    .container{
+   
+    grid-template-columns: repeat(2, 1fr);
+   
+}
+}
+
+/* Desktops grandes */
+@media only screen and (min-width: 1201px) {
+
+    .container{
+  
+    grid-template-columns: repeat(4, 1fr);
+   
+}
+  
 }
 
 .receitaImage{
@@ -65,6 +104,7 @@
 
 .receitaContainer{
     padding: 1em;
+text-align: center;
    
 }
 .receitaLink{

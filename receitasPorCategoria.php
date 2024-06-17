@@ -73,6 +73,41 @@
     
 }
 
+@media only screen and (max-width: 600px) {
+    .container{
+   
+    grid-template-columns: repeat(1, 1fr);
+   
+}
+}
+
+/* Tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .container{
+   
+    grid-template-columns: repeat(2, 1fr);
+   
+}
+}
+
+/* Laptops e desktops de tamanho médio */
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+    .container{
+   
+    grid-template-columns: repeat(2, 1fr);
+   
+}
+}
+
+/* Desktops grandes */
+@media only screen and (min-width: 1201px) {
+
+    .container{
+  
+    grid-template-columns: repeat(4, 1fr);
+   
+}
+
 .receitaImage{
     width: 600px;
     height: 400px;
@@ -82,7 +117,7 @@
 
 .receitaContainer{
     padding: 1em;
-   
+    text-align: center;
 }
 .receitaLink{
     text-decoration: none;

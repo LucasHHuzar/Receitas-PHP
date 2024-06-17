@@ -119,6 +119,7 @@ function displayMenu() {
     position: relative;
     display: none;
     right: 120px;
+    
 }
 
 .menuOptions {
@@ -159,10 +160,11 @@ function displayMenu() {
     gap: 1em;
     align-items: center;
     background-color: rgb(56, 66, 210);
-    padding: 0;
+    padding: 0.5em;
     justify-content: center;
     font-size: 20px;
     background-color: rgb(252, 43, 43);
+    width: 100%;
 }
 
 .categorias {
