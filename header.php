@@ -2,9 +2,9 @@
     <div>
         <div class="cabecalho">
             <div>
-                <img class="logo"
+                <a href="index.php"><img class="logo"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE13zAlmPuC9YmevJRJ4VJV0tSE9cpjM4KOg&s"
-                    alt="image not founded">
+                    alt="image not founded"></a>
             </div>
 
             <div>
