@@ -17,7 +17,19 @@
             <!-- onde passamos o nome da reeceita editada caso queira passar -->
         nome da receita editado <input type="text" name="nomeReceita">
                 <!-- onde passamos o imagen da reeceita editada caso queira passar -->
-        categoria da receita editado <input type="text" name="categoriaReceita">
+        <select class="selector" id="tipoPrato" name="tipoPrato">
+        <?php
+                $categoria = getAllCategorias();
+
+
+                if($categoria != false) {
+                    //loop para pegar as categorias e criar um elemento tipo option com os dados
+                foreach($categoria as $categorias){
+                        echo "<option value=\"{$categorias['categoria']}\">{$categorias['categoria']}</option>";
+                    }
+            }  
+        ?>
+        </select>
         <label for="imageUpload" class="inputs">Selecionar imagens</label>
                 <!-- onde passamos o imagen da reeceita editada caso queira passar -->
         imagem da receita editado <input type="file" id="imageUpload"   name="file" accept="image/*" style="display: none">
@@ -41,7 +53,8 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nomeAeditar = $_POST['nomeAeditar'];
         $nomeReceita = $_POST['nomeReceita'];
-        $categoriaReceita = $_POST['categoriaReceita'];
+        $categoriaReceita = $_POST['tipoPrato'];
+        
         $file = $_FILES['file'];
         $conteudo = $_POST['conteudo'];
 
