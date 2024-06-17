@@ -132,7 +132,7 @@ function displayMenu() {
     width: 150px;
     text-align: left;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
-    border-radius: 1em;
+    border-radius: 1em 0;
 }
 
 .interacaoUsuario {
@@ -160,7 +160,7 @@ function displayMenu() {
     gap: 1em;
     align-items: center;
     background-color: rgb(56, 66, 210);
-    padding: 0.5em;
+    padding: 0.5em 0;
     justify-content: center;
     font-size: 20px;
     background-color: rgb(252, 43, 43);
