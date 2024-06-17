@@ -59,10 +59,9 @@ require_once "upload.php";
 
         }
 
-
         function getAllReceitas(){
           
-           $result = featchTodasAsReceitas();
+            $result = featchTodasAsReceitas();
 
             return $result; 
 

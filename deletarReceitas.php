@@ -40,12 +40,11 @@ if (!isset($_SESSION['usuario'])) {
 
     $usuario = $_SESSION['usuario'];
 
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['receitaAdeletar'])) {
         $nomeReceita = $_POST['receitaAdeletar'];
         deletarReceitaDoUsuario($usuario, $nomeReceita);
     } else {
-       // echo 'Erro: Nome da receita a deletar não foi fornecido.';
+       //echo 'Erro: Nome da receita a deletar não foi fornecido.';
     }
 
 ?>
@@ -119,7 +118,7 @@ if (!isset($_SESSION['usuario'])) {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .receitaLink{
         text-decoration: none;
         font-family: Arial, Helvetica, sans-serif;

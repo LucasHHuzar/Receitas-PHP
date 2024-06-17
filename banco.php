@@ -301,24 +301,19 @@
        }
     }
 
-
-
     function featchTodasAsReceitas(){
         global $banco;
 
-
         $query = "SELECT * FROM `receitas`";
-    
     
         if ($result = $banco->query($query)) {
 
             $receitas = $result->fetch_all(MYSQLI_ASSOC);
             
-          
             $result->free();
-    
 
             return $receitas;
+
         } else {
  
             echo "Error executing query: " . $banco->error;
@@ -341,10 +336,8 @@
              
                 $result = $stmt->get_result();
                 $receitas = $result->fetch_all(MYSQLI_ASSOC);
-                
           
                 $result->free();
-                
     
                 $stmt->close();
                 
@@ -377,17 +370,17 @@
                 $result = $stmt->get_result();
                 $receitas = $result->fetch_all(MYSQLI_ASSOC);
                 
-                
                 $result->free();
                 
-
                 $stmt->close();
                 
                 return $receitas;
+
             } else {
                 echo "Error executing query: " . $stmt->error;
                 return false;
             }
+
         } else {
             echo "Error preparing statement: " . $banco->error;
             return false;
@@ -440,9 +433,5 @@
         return true;
     }
 ?>
-
-
-
-
 
 </pre>

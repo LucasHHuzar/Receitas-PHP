@@ -19,7 +19,7 @@
         $getReceita = getAllReceitas();
         
         if ($getReceita != false) {
-            foreach ($getReceita as $receitas) {
+            foreach ($getReceita as $receitas)  {
                 $nome = urlencode($receitas['nome']); // Encode recipe name for URL
                 echo "<div class='receitaContainer'>";
                    echo "<a href='receita.php?nome={$nome}' class='receitaLink'>";
