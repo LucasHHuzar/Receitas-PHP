@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -14,7 +15,7 @@
     </header>
 
     <section>
-        <h1 class="titutlo">Todas ass categorias</h1>
+        <h1 class="titutlo">Todas as categorias</h1>
         <div class="categories">
         <?php
            require_once "functions.php";
