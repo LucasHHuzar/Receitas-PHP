@@ -2,9 +2,9 @@
     <div>
         <div class="cabecalho">
             <div>
-                <img class="logo"
+                <a href="index.php"><img class="logo"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE13zAlmPuC9YmevJRJ4VJV0tSE9cpjM4KOg&s"
-                    alt="image not founded">
+                    alt="image not founded"></a>
             </div>
 
             <div>
@@ -64,7 +64,7 @@
                                                 echo "<div class='categorias'>";
                                                 echo "<a href='{$url}' class='categoria-link'>" . htmlspecialchars($featch['categoria']) . "</a>";
                                                 echo "</div'>";
-                                           $count++;
+                                            $count++;
                                            
                                         }
                                         
@@ -83,17 +83,15 @@
 
 
 <script>
+
 function displayMenu() {
     let displayMenu = document.getElementById("displayMenu");
-
-
 
     if (displayMenu.style.display == "block") {
         displayMenu.style.display = "none";
     } else {
         displayMenu.style.display = "block";
     }
-
 
 }
 </script>
@@ -102,7 +100,9 @@ function displayMenu() {
 <!-- adicao de stilo a pagina -->
 
 <style>
+
 .cabecalho {
+    background-image: url("img/fundo-cabecalho.png");
     display: flex;
     align-items: center;
     justify-content: space-evenly;

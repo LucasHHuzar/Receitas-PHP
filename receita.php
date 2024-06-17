@@ -60,7 +60,7 @@
 .top{
     margin-top: 1em;
     font-size: 50px;
-    color: grey;
+    color: #333333;
 }
 
 .categoriaReceita{

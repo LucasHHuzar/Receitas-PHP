@@ -1,0 +1,37 @@
+/* Estilos para telas grandes (desktops) */
+body {
+    font-size: 16px;
+    /* Outros estilos... */
+}
+
+/* Media query para dispositivos móveis */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 14px;
+        /* Outros estilos específicos para dispositivos móveis... */
+    }
+}
+
+/* Media query para tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    body {
+        font-size: 15px;
+        /* Outros estilos específicos para tablets... */
+    }
+}
+
+/* Media query para telas pequenas (laptops) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+        /* Outros estilos específicos para telas pequenas... */
+    }
+}
+
+/* Media query para telas grandes (acima de 1200px) */
+@media screen and (min-width: 1201px) {
+    body {
+        font-size: 17px;
+        /* Outros estilos específicos para telas grandes... */
+    }
+}

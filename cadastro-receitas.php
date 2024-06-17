@@ -22,7 +22,7 @@
 
    
     <?php 
-    require_once "form-cadastroReceita.php";
+        require_once "form-cadastroReceita.php";
     ?>
 
 </body>
