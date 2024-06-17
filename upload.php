@@ -52,7 +52,7 @@ if ($tipoImg != "jpg" && $tipoImg != "png" && $tipoImg != "jpeg" && $tipoImg != 
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
 
             return  "img/" . basename($file["name"]);
-        //    echo "O arquivo ". htmlspecialchars(basename($_FILES["file"]["name"])). " foi enviado com sucesso.";
+        //  echo "O arquivo ". htmlspecialchars(basename($_FILES["file"]["name"])). " foi enviado com sucesso.";
         } else {
            // echo "Desculpe, houve um erro ao enviar seu arquivo.";
         }

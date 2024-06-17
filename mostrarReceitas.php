@@ -53,7 +53,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center; 
-    padding: 0 10em ;
+    padding:  10em ;
    
 }
 
@@ -104,7 +104,7 @@
 
 .receitaContainer{
     padding: 1em;
-    text-align: center;
+text-align: center;
    
 }
 .receitaLink{
