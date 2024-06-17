@@ -63,7 +63,7 @@
     font-size: 50px;
     text-align: center;
     margin-top: 1em;
-    color: grey;
+    color: #333333;
 }
 .container{
     display: grid;
@@ -122,7 +122,7 @@
 .receitaLink{
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    color: grey;
+    color: #333333;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
     transition: 300ms ease-in-out;
    
@@ -135,6 +135,7 @@
     color: rgb(56, 66, 210);
     cursor: pointer;
   
+}
 }
 
 </style>

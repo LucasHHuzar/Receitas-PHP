@@ -46,8 +46,8 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     text-align: center;
-    margin-top: 3em;
-    color: grey;
+    margin-top: 1em;
+    color: #333333;
 }
 .container{
     display: grid;
@@ -88,11 +88,14 @@
 @media only screen and (min-width: 1201px) {
 
     .container{
-  
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    padding: 0 45em 1em;
+    gap: 2em;
    
 }
-  
+
+
 }
 
 .receitaImage{
@@ -110,7 +113,7 @@
 .receitaLink{
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    color: grey;
+    color: #333333;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
     transition: 300ms ease-in-out;
    

@@ -56,7 +56,7 @@
     font-size: 20px;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    color: grey;
+    color: #333333;
     border-radius: 1em;
 }
 
