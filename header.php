@@ -64,7 +64,7 @@
                                                 echo "<div class='categorias'>";
                                                 echo "<a href='{$url}' class='categoria-link'>" . htmlspecialchars($featch['categoria']) . "</a>";
                                                 echo "</div'>";
-                                           $count++;
+                                            $count++;
                                            
                                         }
                                         
@@ -83,17 +83,15 @@
 
 
 <script>
+
 function displayMenu() {
     let displayMenu = document.getElementById("displayMenu");
-
-
 
     if (displayMenu.style.display == "block") {
         displayMenu.style.display = "none";
     } else {
         displayMenu.style.display = "block";
     }
-
 
 }
 </script>
@@ -102,7 +100,9 @@ function displayMenu() {
 <!-- adicao de stilo a pagina -->
 
 <style>
+
 .cabecalho {
+    background-image: url("img/fundo-cabecalho.png");
     display: flex;
     align-items: center;
     justify-content: space-evenly;
