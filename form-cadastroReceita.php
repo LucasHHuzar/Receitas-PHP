@@ -1,16 +1,20 @@
 <form action="" method="post" enctype="multipart/form-data">
+
     <div>
+
         <div class="paginasAdicionais">
             <a class="funcoesAdiconais" href="deletarReceitas.php">Deletar Receitas</a>
-            <a  class="funcoesAdiconais" href="">Editar Receitas</a>
+            <a class="funcoesAdiconais" href="">Editar Receitas</a>
         </div>
+
     <div class="headederForms">
 
-   
-
     <div class="info">
+
         <div class="p">
+
              <p>Cadastrar Receita</p>
+             
         </div>
        
     </div>
@@ -59,16 +63,7 @@
       
     </div>
 
-
-   
-       
-
-       
-
         <!-- pedindo img para a pessoa -->
-     
-       
-      
 
         <div class="conteudoReceita">
             <p class="info">Insira o conteudo da receita</p>
@@ -87,9 +82,6 @@
 
 //valida as informacoes e chama a funcao cadastro de receita
 
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $nomePrato = $_POST['nomePrato'];
@@ -99,7 +91,6 @@ $file = $_FILES['file'];
 $conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : ''; // Check if 'conteudo' is set
 
 cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
-
 
 }
 
@@ -149,8 +140,8 @@ cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
         font-family: Arial, Helvetica, sans-serif;
 }
 
-.inputs{
-    background-color: rgb(252, 43, 43);
+    .inputs{
+        background-color: rgb(252, 43, 43);
         border: none;
         padding: 1em;
         color: white;
@@ -159,16 +150,17 @@ cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
         font-family: Arial, Helvetica, sans-serif;
         transition: 300ms ease-in-out;
         width: 200px;
-}
+    }
 
-.inputs:hover{
+    .inputs:hover{
         cursor: pointer;
         background-color: rgb(56, 66, 210);
     }
 
-.info{
+    .info{
         position: relative;
     }
+
     .p{
         position: absolute;
         font-family: Arial, Helvetica, sans-serif;

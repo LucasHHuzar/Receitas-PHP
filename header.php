@@ -108,8 +108,9 @@
 }
 
 .logo{
-    width: 300px;
-    height: 260px;
+    align-items: left;
+    width: auto;
+    height: auto;
     margin: 0;
 }
 
