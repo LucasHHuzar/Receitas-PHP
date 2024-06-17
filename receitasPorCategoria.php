@@ -61,14 +61,15 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     text-align: center;
-    margin-top: 3em;
+    margin-top: 1em;
     color: grey;
 }
 .container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: start; /* Alinha os itens da grade à esquerda */
-   padding: 5em 50em;
+    padding: 5em 2em 10em 2em; /* Ajusta o padding para não empurrar o conteúdo para a direita */
+    
 }
 
 .receitaImage{

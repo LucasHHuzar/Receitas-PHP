@@ -53,10 +53,11 @@
     text-align: center;
     display: flex;
     justify-content: center;
+
 }
 
 .top{
-    margin-top: 2em;
+    margin-top: 1em;
     font-size: 50px;
     color: grey;
 }
@@ -74,7 +75,7 @@
 .conteudoReceita {
     font-size: 40px;
     max-width: 60em;
-    text-align: center;
-margin: 1em 30em;
+    justify-content: start; /* Alinha os itens da grade à esquerda */
+    text-align: justify;
 }
 </style>

@@ -110,6 +110,7 @@
 .logo{
     width: 300px;
     height: 260px;
+    margin: 0;
 }
 
 .menu{
@@ -129,7 +130,6 @@
     text-align: left;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
     border-radius: 1em;
-
 }
 
 .interacaoUsuario{
@@ -157,7 +157,7 @@
     gap: 1em;
     align-items: center;
     background-color: rgb(56, 66, 210);
-    padding: 1em;
+    padding: 0;
     justify-content: center;
     font-size: 20px;
     background-color: rgb(252, 43, 43);
@@ -168,6 +168,7 @@
     align-items: center;
     gap: 2em;
 }
+
 .categoria-link{
     text-decoration: none;
     color: white;
