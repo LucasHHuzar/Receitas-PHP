@@ -1,7 +1,7 @@
 <pre>
 <?php 
 
-    $banco = new mysqli("localhost:3307", "root", "", "receitas_php");
+    $banco = new mysqli("localhost:3306", "root", "", "receitas_php");
     //checa se a conexao com o banco 
     if($banco->connect_error){
         die("erro de conexao com banco: " . $banco->connect_error);
