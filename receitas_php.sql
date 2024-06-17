@@ -2,7 +2,7 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
+-- Host: localhost:3306
 -- Tempo de geração: 15-Jun-2024 às 23:16
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.0.30

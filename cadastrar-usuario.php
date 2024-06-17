@@ -29,7 +29,10 @@
 
             criarusuario($usuario, $nome, $senha, false);
             
-            echo "<h2>Usuário Criado</h2>";            
+            echo "<h2>Usuário Criado</h2>";
+            
+            header("Location: index.php");
+            
         }
 
     ?>
