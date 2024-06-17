@@ -39,7 +39,7 @@ function uploadFile($file){
         $uploadOk = 0;
     }
 
-    //permiti so formato de "imagem"
+    //permite so formato de "imagem"
     if ($tipoImg != "jpg" && $tipoImg != "png" && $tipoImg != "jpeg"
     && $tipoImg != "gif") {
       echo "Desculpe, apenas arquivos JPG, JPEG, PNG e GIF são permitidos.";
