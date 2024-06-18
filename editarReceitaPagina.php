@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
 
@@ -11,32 +12,43 @@
     <?php require_once "header.php"?>
 </header>
     <section>
-    <form action="" method="post" enctype="multipart/form-data">
-            <!-- onde passamos o nome da receita que deesejamos editar -->
-        nome da receita para editar <input type="text" name="nomeAeditar">
-            <!-- onde passamos o nome da reeceita editada caso queira passar -->
-        nome da receita editado <input type="text" name="nomeReceita">
-                <!-- onde passamos o imagen da reeceita editada caso queira passar -->
-        <select class="selector" id="tipoPrato" name="tipoPrato">
-        <?php
-                $categoria = getAllCategorias();
+        <div class="info">
 
+            <div class="p">
+        
+            <form action="" method="post" enctype="multipart/form-data" class="funcoesAdicionais">
+                    <!-- onde passamos o nome da receita que deesejamos editar -->
+                Nome atual da receita <input type="text" name="nomeAeditar">
+             
+                    <!-- onde passamos o nome da receita editada caso queira passar -->
+                Novo nome da receita <input type="text" name="nomeReceita">
+                        <!-- onde passamos o imagen da receita editada caso queira passar -->
+             
+            
+                <select class="selector" id="tipoPrato" name="tipoPrato">
+                <?php
+                        $categoria = getAllCategorias();
 
-                if($categoria != false) {
-                    //loop para pegar as categorias e criar um elemento tipo option com os dados
-                foreach($categoria as $categorias){
-                        echo "<option value=\"{$categorias['categoria']}\">{$categorias['categoria']}</option>";
-                    }
-            }  
-        ?>
-        </select>
-        <label for="imageUpload" class="inputs">Selecionar imagens</label>
-                <!-- onde passamos o imagen da reeceita editada caso queira passar -->
-        imagem da receita editado <input type="file" id="imageUpload"   name="file" accept="image/*" style="display: none">
+                        if($categoria != false) {
+                            //loop para pegar as categorias e criar um elemento tipo option com os dados
+                        foreach($categoria as $categorias){
+                                echo "<option value=\"{$categorias['categoria']}\">{$categorias['categoria']}</option>";
+                            }
+                    }  
+                ?>
+                </select>
+
+                <label for="imageUpload" class="inputs">Selecionar imagens</label>
+                        <!-- onde passamos o imagen da reeceita editada caso queira passar -->
+                Nova imagem da receita <input type="file" id="imageUpload"   name="file" accept="image/*" style="display: none">
+                
                 <!-- onde passamos o conteudo da reeceita editada caso queira passar -->
-        conteeudo da receita editado <textarea name="conteudo" id=""></textarea>
-        <button type="submit">Editar</button>
-    </form>
+                Novo conteúdo da receita <textarea name="conteudo" id=""></textarea>
+                <button type="submit">Editar</button>
+            </form>
+        </div>
+
+    </div>
 
     <?php 
 
@@ -100,6 +112,7 @@
 </html>
 
 <style>
+
     .top{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 50px;
@@ -142,7 +155,6 @@
         color: grey;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
         transition: 300ms ease-in-out;
-    
     }
 
     .input{
@@ -196,9 +208,6 @@
        
     }
 
-    
-
-
     .inputs{
         background-color: rgb(252, 43, 43);
         border: none;
@@ -220,20 +229,6 @@
         position: relative;
     }
 
-    .p{
-        position: absolute;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        color:rgb(154, 154, 154);
-        top: -95px;
-        left: 60px;
-        width: 300px;
-        font-size: 20px;
-       
-    }
-
-
-
     .selector:hover{
         cursor: pointer;
     }
@@ -244,8 +239,6 @@
         justify-content: center;
         gap: 2em;
     }
-
-
 
     .imagePicker{
         background-color: rgb(252, 43, 43);
@@ -266,9 +259,5 @@
         cursor: pointer;
         background-color: rgb(56, 66, 210);
     }
-
-
-    
-
     
 </style>

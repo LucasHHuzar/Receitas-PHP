@@ -3,8 +3,8 @@
     <div>
 
         <div class="paginasAdicionais">
-            <a class="funcoesAdiconais" href="deletarReceitas.php">Deletar Receitas</a>
-            <a class="funcoesAdiconais" href="editarReceitaPagina.php">Editar Receitas</a>
+            <a class="funcoesAdicionais" href="deletarReceitas.php">Deletar Receitas</a>
+            <a class="funcoesAdicionais" href="editarReceitaPagina.php">Editar Receitas</a>
         </div>
 
     <div class="headederForms">
@@ -18,10 +18,8 @@
         </div>
        
     </div>
-
     
-    
-        <input class="inputsText" type="text"  name="nomePrato" id="" placeholder="nome da receita">
+        <input class="inputsText" type="text"  name="nomePrato" id="" placeholder="Nome da receita">
         <label for="imageUpload" class="inputs">Selecionar imagens</label>
         <input type="file" id="imageUpload"   name="file" accept="image/*" style="display: none">
 
@@ -94,7 +92,6 @@ cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
 
 }
 
-
 ?>
 <style>
 
@@ -107,7 +104,7 @@ cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
     margin-top: 5em;
 }
 
-.funcoesAdiconais{
+.funcoesAdicionais{
     background-color: rgb(252, 43, 43);
     padding: 1em;
     text-decoration: none;
@@ -116,10 +113,12 @@ cadastroReceita($usuario, $nomePrato, $tipoPrato, $file, $conteudo);
     border-radius: 1em;
     transition:  300ms ease-in-out;
 }
-.funcoesAdiconais:hover{
+
+.funcoesAdicionais:hover{
     cursor: pointer;
     background-color: rgb(56, 66, 210);
 }
+
 .headederForms{
     display: flex;
     align-items: center;
