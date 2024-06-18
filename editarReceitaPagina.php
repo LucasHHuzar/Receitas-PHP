@@ -18,10 +18,10 @@
         
             <form action="" method="post" enctype="multipart/form-data" class="funcoesAdicionais">
                     <!-- onde passamos o nome da receita que deesejamos editar -->
-                Nome atual da receita <input type="text" name="nomeAeditar">
+                 <input class="inputsText" type="text" name="nomeAeditar" placeholder="nome da receita que deseja deletar">
              
                     <!-- onde passamos o nome da receita editada caso queira passar -->
-                Novo nome da receita <input type="text" name="nomeReceita">
+               <input class="inputsText" type="inputsText" name="nomeReceita" placeholder="editar nome" >
                         <!-- onde passamos o imagen da receita editada caso queira passar -->
              
             
@@ -40,11 +40,11 @@
 
                 <label for="imageUpload" class="inputs">Selecionar imagens</label>
                         <!-- onde passamos o imagen da reeceita editada caso queira passar -->
-                Nova imagem da receita <input type="file" id="imageUpload"   name="file" accept="image/*" style="display: none">
+                <input  class="inputs" type="file" id="imageUpload"   name="file" accept="image/*" style="display: none">
                 
                 <!-- onde passamos o conteudo da reeceita editada caso queira passar -->
-                Novo conteúdo da receita <textarea name="conteudo" id=""></textarea>
-                <button type="submit">Editar</button>
+                <textarea class="inputsText" name="conteudo" id="" placeholder="editar Conteudo"></textarea>
+                <button class="button" type="submit">Editar</button>
             </form>
         </div>
 
@@ -112,7 +112,13 @@
 </html>
 
 <style>
-
+.funcoesAdicionais{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    flex-direction: column;
+}
     .top{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 50px;
@@ -120,6 +126,19 @@
         margin-top: 3em;
         color: grey;
     }
+
+    .inputsText{
+    width: 500px;
+        height: 50px;
+        padding: 1em;
+        border: none;
+        background-color: white;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
+        border-radius: 3em;
+        outline: none;
+        font-family: Arial, Helvetica, sans-serif;
+}
+
 
     .container{
         display: grid;
@@ -167,6 +186,7 @@
         border-radius: 3em;
         outline: none;
         font-family: Arial, Helvetica, sans-serif;
+
     }
 
     .button{
@@ -226,7 +246,10 @@
     }
 
     .info{
-        position: relative;
+        display: flex;
+        justify-content: center;
+        gap: 3em;
+        padding: 3em;
     }
 
     .selector:hover{
